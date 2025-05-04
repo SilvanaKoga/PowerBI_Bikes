@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"brands\",\"categories\",\"customers\",\"order_items\",\"orders\",\"products\",\"staffs\",\"stocks\",\"stores\",\"category_product\"]"
+        "value": "[\"brands\",\"categories\",\"customers\",\"order_items\",\"orders\",\"products\",\"staffs\",\"stocks\",\"stores\",\"category_product\",\"SourceDataDir\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.139.2054.0 (24.12)+334ca1c95b576cc53924655643b0d36f21caac55"
+        "value": "2.142.928.0 (25.04)+de52df9f0bb74ad93a80d89c52d63fe6d07e0e1b"
       },
       {
         "name": "PBI_ProTooling",
@@ -81,6 +81,25 @@
       "returnErrorValuesAsNull": true
     },
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "SourceDataDir",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "description": "Directory with CSV files",
+        "expression": "\"C:\\Users\\hatsu\\Downloads\\Bike_Store\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]",
+        "kind": "m",
+        "lineageTag": "354bf27f-8247-465d-8683-b2361b125919"
+      }
+    ],
     "relationships": [
       {
         "name": "AutoDetected_514489e2-1aa4-47b1-8d8e-4643ec7bd5dc",
@@ -222,7 +241,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\hatsu\\Downloads\\Bike_Store\\brands.csv\"),[Delimiter=\",\", Columns=2, Encoding=932, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(SourceDataDir&\"\\brands.csv\"),[Delimiter=\",\", Columns=2, Encoding=932, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"brand_id\", Int64.Type}, {\"brand_name\", type text}})",
                 "in",
@@ -239,6 +258,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "changedProperties": [
@@ -296,7 +319,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\hatsu\\Downloads\\Bike_Store\\categories.csv\"),[Delimiter=\",\", Columns=2, Encoding=932, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(SourceDataDir&\"\\categories.csv\"),[Delimiter=\",\", Columns=2, Encoding=932, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"category_id\", Int64.Type}, {\"category_name\", type text}})",
                 "in",
@@ -313,6 +336,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -459,7 +486,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\hatsu\\Downloads\\Bike_Store\\customers.csv\"),[Delimiter=\",\", Columns=9, Encoding=932, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(SourceDataDir&\"\\customers.csv\"),[Delimiter=\",\", Columns=9, Encoding=932, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"customer_id\", Int64.Type}, {\"first_name\", type text}, {\"last_name\", type text}, {\"phone\", type text}, {\"email\", type text}, {\"street\", type text}, {\"city\", type text}, {\"state\", type text}, {\"zip_code\", Int64.Type}})",
                 "in",
@@ -476,6 +503,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -605,7 +636,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\hatsu\\Downloads\\Bike_Store\\order_items.csv\"),[Delimiter=\",\", Columns=6, Encoding=932, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(SourceDataDir&\"\\order_items.csv\"),[Delimiter=\",\", Columns=6, Encoding=932, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"order_id\", Int64.Type}, {\"item_id\", Int64.Type}, {\"product_id\", Int64.Type}, {\"quantity\", Int64.Type}, {\"list_price\", type number}, {\"discount\", type number}})",
                 "in",
@@ -846,7 +877,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\hatsu\\Downloads\\Bike_Store\\orders.csv\"),[Delimiter=\",\", Columns=8, Encoding=932, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(SourceDataDir&\"\\orders.csv\"),[Delimiter=\",\", Columns=8, Encoding=932, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"order_id\", Int64.Type}, {\"customer_id\", Int64.Type}, {\"order_status\", Int64.Type}, {\"order_date\", type date}, {\"required_date\", type date}, {\"shipped_date\", type date}, {\"store_id\", Int64.Type}, {\"staff_id\", Int64.Type}})",
                 "in",
@@ -863,6 +894,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "changedProperties": [
@@ -1000,7 +1035,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\hatsu\\Downloads\\Bike_Store\\products.csv\"),[Delimiter=\",\", Columns=6, Encoding=932, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(SourceDataDir&\"\\products.csv\"),[Delimiter=\",\", Columns=6, Encoding=932, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"product_id\", Int64.Type}, {\"product_name\", type text}, {\"brand_id\", Int64.Type}, {\"category_id\", Int64.Type}, {\"model_year\", Int64.Type}, {\"list_price\", type number}})",
                 "in",
@@ -1189,7 +1224,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\hatsu\\Downloads\\Bike_Store\\staffs.csv\"),[Delimiter=\",\", Columns=8, Encoding=932, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(SourceDataDir&\"\\staffs.csv\"),[Delimiter=\",\", Columns=8, Encoding=932, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"staff_id\", Int64.Type}, {\"first_name\", type text}, {\"last_name\", type text}, {\"email\", type text}, {\"phone\", type text}, {\"active\", Int64.Type}, {\"store_id\", Int64.Type}, {\"manager_id\", type text}}),",
                 "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"active\"})",
@@ -1207,6 +1242,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1261,7 +1300,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\hatsu\\Downloads\\Bike_Store\\stocks.csv\"),[Delimiter=\",\", Columns=3, Encoding=932, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(SourceDataDir&\"\\stocks.csv\"),[Delimiter=\",\", Columns=3, Encoding=932, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"store_id\", Int64.Type}, {\"product_id\", Int64.Type}, {\"quantity\", Int64.Type}})",
                 "in",
@@ -1482,7 +1521,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\hatsu\\Downloads\\Bike_Store\\stores.csv\"),[Delimiter=\",\", Columns=8, Encoding=932, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(SourceDataDir&\"\\stores.csv\"),[Delimiter=\",\", Columns=8, Encoding=932, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"store_id\", Int64.Type}, {\"store_name\", type text}, {\"phone\", type text}, {\"email\", type text}, {\"street\", type text}, {\"city\", type text}, {\"state\", type text}, {\"zip_code\", Int64.Type}}),",
                 "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"store_name\", \"Store_name\"}})",
